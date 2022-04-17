@@ -56,8 +56,9 @@ class Date {
    * @returns {number}
    */
   get daysSinceNewYear() {
-    console.log('whaat', f === undefined)
-    return f.totalDays(new Date(this.day, this.month, 1));
+    const newYear = f.totalDays(new Date(1, 1, this.year)) - 1;
+    const days = f.totalDays(this);
+    return days - newYear;
   }
 
   /**

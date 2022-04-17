@@ -32,7 +32,11 @@ describe('Date', () => {
         const date = new Date(5, 1, 2015);
         expect(date.daysSinceNewYear).toEqual(5);
       })
+
+      it('should return 64', () => {
+        const date = new Date(4, 3, 2020);
+        expect(date.daysSinceNewYear).toEqual(64);
+      })
     })
   })
-
 })

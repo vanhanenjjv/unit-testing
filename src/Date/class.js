@@ -1,4 +1,4 @@
-const f = require('./functions');
+const f = require("./functions");
 
 class Date {
   #day;
@@ -6,9 +6,9 @@ class Date {
   #year;
 
   /**
-   * @param {number} day 
-   * @param {number} month 
-   * @param {number} year 
+   * @param {number} day
+   * @param {number} month
+   * @param {number} year
    */
   constructor(day, month, year) {
     if (day === undefined) {
@@ -41,18 +41,21 @@ class Date {
    * @returns {void}
    */
   nextDay() {
-    const lastDayOfTheMonth = f.daysInMonth(this.month, f.isLeapYear(this.year));
+    const lastDayOfTheMonth = f.daysInMonth(
+      this.month,
+      f.isLeapYear(this.year)
+    );
 
     if (this.day < lastDayOfTheMonth) {
       this.#day += 1;
-      return
+      return;
     }
 
     this.#day = 1;
 
     if (this.month < 12) {
       this.#month += 1;
-      return
+      return;
     }
 
     this.#month = 1;
@@ -88,6 +91,6 @@ class Date {
   get year() {
     return this.#year;
   }
-};
+}
 
 module.exports.Date = Date;

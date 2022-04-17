@@ -1,8 +1,8 @@
-const { Date } = require('./class')
+const { Date } = require("./class");
 
 /**
- * @param {number} start 
- * @param {number} end 
+ * @param {number} start
+ * @param {number} end
  * @returns {Array}
  */
 function range(start, end) {
@@ -10,7 +10,7 @@ function range(start, end) {
 }
 
 /**
- * @param {number} date 
+ * @param {number} date
  * @returns {boolean}
  */
 function isLeapYear(year) {
@@ -27,10 +27,10 @@ function isLeapYear(year) {
 function totalDays(date) {
   const d = date.day;
   const m = range(1, date.month)
-    .map(month => daysInMonth(month, isLeapYear(date.year)))
-    .reduce((total, days) => total + days, 0)
+    .map((month) => daysInMonth(month, isLeapYear(date.year)))
+    .reduce((total, days) => total + days, 0);
   const y = range(1, date.year)
-    .map(year => isLeapYear(year) ? 366 : 365)
+    .map((year) => (isLeapYear(year) ? 366 : 365))
     .reduce((total, days) => total + days, 0);
 
   return d + m + y;
@@ -73,8 +73,8 @@ function daysInMonth(month, isLeapYear) {
 }
 
 /**
- * @param {Date} a 
- * @param {Date} b 
+ * @param {Date} a
+ * @param {Date} b
  * @returns {number}
  */
 function daysBetween(a, b) {
@@ -86,5 +86,5 @@ module.exports = {
   isLeapYear,
   daysInMonth,
   range,
-  totalDays
-}
+  totalDays,
+};

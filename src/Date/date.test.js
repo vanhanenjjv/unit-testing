@@ -1,105 +1,105 @@
-const { Date } = require('./class')
-const f = require('./functions')
+const { Date } = require("./class");
+const f = require("./functions");
 
-describe('Date', () => {
-  describe('functions', () => {
-    describe('range(number, number)', () => {
+describe("Date", () => {
+  describe("functions", () => {
+    describe("range(number, number)", () => {
       it('should return [1, 2] for (1, 3)"', () => {
-        expect(f.range(1, 3)).toEqual([1, 2])
-      })
-    })
+        expect(f.range(1, 3)).toEqual([1, 2]);
+      });
+    });
 
-    describe('isLeapYear(number)', () => {
-      it('should return true for 2000', () => {
-        expect(f.isLeapYear(2000)).toEqual(true)
-      })
+    describe("isLeapYear(number)", () => {
+      it("should return true for 2000", () => {
+        expect(f.isLeapYear(2000)).toEqual(true);
+      });
 
-      it('should return false 1900', () => {
-        expect(f.isLeapYear(1900)).toEqual(false)
-      })
-    
-      it('should return true for 1904', () => {
-        expect(f.isLeapYear(1904)).toEqual(true)
-      })
+      it("should return false 1900", () => {
+        expect(f.isLeapYear(1900)).toEqual(false);
+      });
 
-      it('should return false for 1900', () => {
-        expect(f.isLeapYear(1900)).toEqual(false)
-      })
-    })
+      it("should return true for 1904", () => {
+        expect(f.isLeapYear(1904)).toEqual(true);
+      });
 
-    describe('daysBetween(Date)', () => {
-      it('should return 3 for (4, 1, 1) and (7, 1, 1)', () => {
+      it("should return false for 1900", () => {
+        expect(f.isLeapYear(1900)).toEqual(false);
+      });
+    });
+
+    describe("daysBetween(Date)", () => {
+      it("should return 3 for (4, 1, 1) and (7, 1, 1)", () => {
         const a = new Date(4, 1, 1);
         const b = new Date(7, 1, 1);
         expect(a.daysBetween(b)).toEqual(3);
-      })
+      });
 
-      it('should return 4 for (1, 1, 1) and (5, 1, 1)', () => {
+      it("should return 4 for (1, 1, 1) and (5, 1, 1)", () => {
         const a = new Date(1, 1, 1);
         const b = new Date(5, 1, 1);
         expect(a.daysBetween(b)).toEqual(4);
-      })
-    })
+      });
+    });
 
-    describe('daysInMonth(number, boolean)', () => {
-      it('should return 29 for (2, true)', () => {
+    describe("daysInMonth(number, boolean)", () => {
+      it("should return 29 for (2, true)", () => {
         expect(f.daysInMonth(2, true)).toEqual(29);
-      })
+      });
 
-      it('should return 30 for (4, false)', () => {
+      it("should return 30 for (4, false)", () => {
         expect(f.daysInMonth(4, false)).toEqual(30);
-      })
+      });
 
-      it('should return 31 for (1, false)', () => {
+      it("should return 31 for (1, false)", () => {
         expect(f.daysInMonth(1, false)).toEqual(31);
-      })
-    })
+      });
+    });
 
-    describe('totalDays(Date)', () => {
-      it('should return 365 for (1, 1, 1) and (1, 1, 2)', () => {
+    describe("totalDays(Date)", () => {
+      it("should return 365 for (1, 1, 1) and (1, 1, 2)", () => {
         const a = new Date(1, 1, 1);
         const b = new Date(1, 1, 2);
         expect(a.daysBetween(b)).toEqual(365);
-      })
+      });
 
-      it('should return 1826 for (1, 1, 1) and (1, 1, 6)', () => {
+      it("should return 1826 for (1, 1, 1) and (1, 1, 6)", () => {
         const a = new Date(1, 1, 1);
         const b = new Date(1, 1, 6);
         expect(a.daysBetween(b)).toEqual(1826);
-      })
+      });
 
-      it('should return 3653 (1, 1, 2000) and (1, 1, 2010)', () => {
+      it("should return 3653 (1, 1, 2000) and (1, 1, 2010)", () => {
         const a = new Date(1, 1, 2000);
         const b = new Date(1, 1, 2010);
         expect(a.daysBetween(b)).toEqual(3653);
-      })
-    })
-  })
+      });
+    });
+  });
 
-  describe('class', () => {
-    describe('nextDay()', () => {
-      it('should increment day by one', () => {
+  describe("class", () => {
+    describe("nextDay()", () => {
+      it("should increment day by one", () => {
         const date = new Date(1, 2, 2001);
         date.nextDay();
         expect(date.day).toBe(2);
-      })
+      });
 
-      it('should set day to one and increment month by one', () => {
+      it("should set day to one and increment month by one", () => {
         const date = new Date(31, 9, 2001);
         date.nextDay();
         expect(date.day).toBe(1);
         expect(date.month).toBe(10);
-      })
+      });
 
-      it('should set day and month to one and increment year by one', () => {
+      it("should set day and month to one and increment year by one", () => {
         const date = new Date(31, 12, 2001);
         date.nextDay();
         expect(date.day).toBe(1);
         expect(date.month).toBe(1);
         expect(date.year).toBe(2002);
-      })
+      });
 
-      it('should take leap years into account', () => {
+      it("should take leap years into account", () => {
         const leapYearDate = new Date(28, 2, 2020);
         leapYearDate.nextDay();
         expect(leapYearDate.day).toBe(29);
@@ -108,35 +108,35 @@ describe('Date', () => {
         nonLeapYearDate.nextDay();
         expect(nonLeapYearDate.day).toBe(1);
         expect(nonLeapYearDate.month).toBe(3);
-      })
-    })
+      });
+    });
 
-    describe('print()', () => {
+    describe("print()", () => {
       it('should print "1.2.2001"', () => {
-        const consoleLogMock = jest.spyOn(console, 'log').mockImplementation();
+        const consoleLogMock = jest.spyOn(console, "log").mockImplementation();
         const date = new Date(1, 2, 2001);
         date.print();
-        expect(consoleLogMock).toBeCalledWith('1.2.2001');
-      })
+        expect(consoleLogMock).toBeCalledWith("1.2.2001");
+      });
 
       it('should print "5.12.2006"', () => {
-        const consoleLogMock = jest.spyOn(console, 'log').mockImplementation();
+        const consoleLogMock = jest.spyOn(console, "log").mockImplementation();
         const date = new Date(5, 12, 2006);
         date.print();
-        expect(consoleLogMock).toBeCalledWith('5.12.2006');
-      })
-    })
+        expect(consoleLogMock).toBeCalledWith("5.12.2006");
+      });
+    });
 
-    describe('daysSinceNewYear()', () => {
-      it('should return 5', () => {
+    describe("daysSinceNewYear()", () => {
+      it("should return 5", () => {
         const date = new Date(5, 1, 2015);
         expect(date.daysSinceNewYear).toEqual(5);
-      })
+      });
 
-      it('should return 64', () => {
+      it("should return 64", () => {
         const date = new Date(4, 3, 2020);
         expect(date.daysSinceNewYear).toEqual(64);
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});

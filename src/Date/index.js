@@ -1,3 +1,3 @@
-const { Date } = require('./class')
+const { Date } = require("./class");
 
-module.exports = Date
+module.exports = Date;

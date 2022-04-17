@@ -1,13 +1,17 @@
 module.exports = class Date {
+  #day;
+  #month;
+  #year;
+
   constructor(day, month, year) {
     if (day === undefined) {
-      this.year = 1900;
-      this.month = 1;
-      this.day = 1;
+      this.#day = 1;
+      this.#month = 1;
+      this.#year = 1900;
     } else {
-      this.day = day;
-      this.month = month;
-      this.year = year;
+      this.#day = day;
+      this.#month = month;
+      this.#year = year;
     }
   }
 
@@ -71,19 +75,19 @@ module.exports = class Date {
     const lastDayOfTheMonth = this.#daysInMonth(this.month, this.#isLeapYear());
 
     if (this.day < lastDayOfTheMonth) {
-      this.day += 1;
+      this.#day += 1;
       return
     }
 
-    this.day = 1;
+    this.#day = 1;
 
     if (this.month < 12) {
-      this.month += 1;
+      this.#month += 1;
       return
     }
 
-    this.month = 1;
-    this.year += 1;
+    this.#month = 1;
+    this.#year += 1;
   }
 
   /**
@@ -105,20 +109,20 @@ module.exports = class Date {
    * @returns {number}
    */
   get day() {
-    return this.day;
+    return this.#day;
   }
 
   /**
    * @returns {number}
    */
   get month() {
-    return this.month;
+    return this.#month;
   }
 
   /**
    * @returns {number}
    */
   get year() {
-    return this.year;
+    return this.#year;
   }
 };

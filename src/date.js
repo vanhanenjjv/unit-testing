@@ -14,8 +14,7 @@ module.exports = class Date {
   /**
    * @returns {void}
    */
-  print() {
-  }
+  print() {}
 
   /**
    * @returns {boolean}
@@ -34,52 +33,73 @@ module.exports = class Date {
    */
   #daysInMonth(month, isLeapYear) {
     switch (month) {
-      case 1: return 31;
-      case 2: return isLeapYear ? 29 : 28;
-      case 3: return 31;
-      case 4: return 30;
-      case 5: return 31;
-      case 6: return 30;
-      case 7: return 31;
-      case 8: return 31;
-      case 9: return 30;
-      case 10: return 31;
-      case 11: return 30;
-      case 12: return 31;
-      default: throw new Error('Invalid month');
-    } 
-  } 
+      case 1:
+        return 31;
+      case 2:
+        return isLeapYear ? 29 : 28;
+      case 3:
+        return 31;
+      case 4:
+        return 30;
+      case 5:
+        return 31;
+      case 6:
+        return 30;
+      case 7:
+        return 31;
+      case 8:
+        return 31;
+      case 9:
+        return 30;
+      case 10:
+        return 31;
+      case 11:
+        return 30;
+      case 12:
+        return 31;
+      default:
+        throw new Error("Invalid month");
+    }
+  }
 
   /**
    * @returns {void}
    */
-  nextDay() {
-  }
+  nextDay() {}
 
   /**
    * @returns {number}
    */
   get daysSinceNewYear() {
+    const tmp = new Date(1, 1, this.year);
+    let days = 0;
+
+    while (tmp.day !== this.day && tmp.month !== this.month) {
+      days++;
+      tmp.nextDay();
+    }
+
+    return days;
   }
 
   /**
    * @returns {number}
    */
   get day() {
-    return this.day
+    return this.day;
   }
 
   /**
    * @returns {number}
    */
   get month() {
-    return this.month
+    return this.month;
   }
 
   /**
    * @returns {number}
    */
   get year() {
-    return this.year
+    return this.year;
   }
-}
+};

@@ -6,7 +6,6 @@ class Date {
   #year;
 
   /**
-   * 
    * @param {number} day 
    * @param {number} month 
    * @param {number} year 
@@ -31,10 +30,18 @@ class Date {
   }
 
   /**
+   * @param {Date} other
+   * @returns {number}
+   */
+  daysBetween(other) {
+    return f.daysBetween(this, other);
+  }
+
+  /**
    * @returns {void}
    */
   nextDay() {
-    const lastDayOfTheMonth = f.daysInMonth(this.month, isLeapYear(this));
+    const lastDayOfTheMonth = f.daysInMonth(this.month, f.isLeapYear(this.year));
 
     if (this.day < lastDayOfTheMonth) {
       this.#day += 1;

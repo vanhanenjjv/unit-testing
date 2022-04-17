@@ -10,13 +10,13 @@ function range(start, end) {
 }
 
 /**
- * @param {Date} date 
+ * @param {number} date 
  * @returns {boolean}
  */
-function isLeapYear(date) {
-  if (date.year % 400 === 0) return true;
-  if (date.year % 100 === 0) return false;
-  if (date.year % 4 === 0) return true;
+function isLeapYear(year) {
+  if (year % 400 === 0) return true;
+  if (year % 100 === 0) return false;
+  if (year % 4 === 0) return true;
   return false;
 }
 
@@ -25,13 +25,15 @@ function isLeapYear(date) {
  * @returns {number}
  */
 function totalDays(date) {
-  return date.day
-    + range(1, date.month)
-        .map(month => daysInMonth(month, isLeapYear(date)))
-        .reduce((total, days) => total + days, 0)
-    + range(1, date.year)
-        .map(year => isLeapYear(year) ? 366 : 365)
-        .reduce((total, days) => total + days, 0);
+  const d = date.day;
+  const m = range(1, date.month)
+    .map(month => daysInMonth(month, isLeapYear(date.year)))
+    .reduce((total, days) => total + days, 0)
+  const y = range(1, date.year)
+    .map(year => isLeapYear(year) ? 366 : 365)
+    .reduce((total, days) => total + days, 0);
+
+  return d + m + y;
 }
 
 /**
@@ -71,7 +73,6 @@ function daysInMonth(month, isLeapYear) {
 }
 
 /**
- * 
  * @param {Date} a 
  * @param {Date} b 
  * @returns {number}
@@ -83,6 +84,7 @@ function daysBetween(a, b) {
 module.exports = {
   daysBetween,
   isLeapYear,
+  daysInMonth,
   range,
   totalDays
 }

@@ -14,7 +14,9 @@ module.exports = class Date {
   /**
    * @returns {void}
    */
-  print() {}
+  print() {
+    console.log(`${this.day}.${this.month}.${this.year}`);
+  }
 
   /**
    * @returns {boolean}

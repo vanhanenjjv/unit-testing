@@ -66,9 +66,9 @@ class Date {
    * @returns {number}
    */
   get daysSinceNewYear() {
-    const newYear = f.totalDays(new Date(1, 1, this.year)) - 1;
-    const days = f.totalDays(this);
-    return days - newYear;
+    const newYearDays = f.totalDays(new Date(1, 1, this.year));
+    const todayDays = f.totalDays(this);
+    return todayDays - newYearDays;
   }
 
   /**

@@ -5,14 +5,15 @@ const { Date } = require('./class')
  * @param {number} end 
  * @returns {Array}
  */
-module.exports.range = (start, end) =>
-  Array.from({ length: end - start }, (_, i) => i + start);
+function range(start, end) {
+  return Array.from({ length: end - start }, (_, i) => i + start);
+}
 
 /**
  * @param {Date} date 
  * @returns {boolean}
  */
-module.exports.isLeapYear = date => {
+function isLeapYear(date) {
   if (date.year % 400 === 0) return true;
   if (date.year % 100 === 0) return false;
   if (date.year % 4 === 0) return true;
@@ -23,21 +24,22 @@ module.exports.isLeapYear = date => {
  * @param {Date} date
  * @returns {number}
  */
-module.exports.totalDays = date =>
-  date.day
-  + range(1, date.month)
-      .map(month => daysInMonth(month, isLeapYear(date)))
-      .reduce((total, days) => total + days, 0)
-  + range(1, date.year)
-      .map(year => isLeapYear(year) ? 366 : 365)
-      .reduce((total, days) => total + days, 0);
+function totalDays(date) {
+  return date.day
+    + range(1, date.month)
+        .map(month => daysInMonth(month, isLeapYear(date)))
+        .reduce((total, days) => total + days, 0)
+    + range(1, date.year)
+        .map(year => isLeapYear(year) ? 366 : 365)
+        .reduce((total, days) => total + days, 0);
+}
 
 /**
  * @param {number} month
  * @param {boolean} isLeapYear
  * @returns {number}
  */
-module.exports.daysInMonth = (month, isLeapYear) => {
+function daysInMonth(month, isLeapYear) {
   switch (month) {
     case 1:
       return 31;
@@ -74,5 +76,13 @@ module.exports.daysInMonth = (month, isLeapYear) => {
  * @param {Date} b 
  * @returns {number}
  */
-module.exports.daysBetween = (a, b) =>
-  Math.abs(totalDays(a) - totalDays(b));
+function daysBetween(a, b) {
+  return Math.abs(totalDays(a) - totalDays(b));
+}
+
+module.exports = {
+  daysBetween,
+  isLeapYear,
+  range,
+  totalDays
+}

@@ -1,6 +1,6 @@
-const { daysInMonth, isLeapYear } = require('./functions.js');
+const f = require('./functions');
 
-module.exports.Date = class Date {
+class Date {
   #day;
   #month;
   #year;
@@ -34,7 +34,7 @@ module.exports.Date = class Date {
    * @returns {void}
    */
   nextDay() {
-    const lastDayOfTheMonth = daysInMonth(this.month, isLeapYear(this));
+    const lastDayOfTheMonth = f.daysInMonth(this.month, isLeapYear(this));
 
     if (this.day < lastDayOfTheMonth) {
       this.#day += 1;
@@ -56,15 +56,8 @@ module.exports.Date = class Date {
    * @returns {number}
    */
   get daysSinceNewYear() {
-    const tmp = new Date(1, 1, this.year);
-    let days = 0;
-
-    while (tmp.day !== this.day && tmp.month !== this.month) {
-      days++;
-      tmp.nextDay();
-    }
-
-    return days;
+    console.log('whaat', f === undefined)
+    return f.totalDays(new Date(this.day, this.month, 1));
   }
 
   /**
@@ -88,3 +81,5 @@ module.exports.Date = class Date {
     return this.#year;
   }
 };
+
+module.exports.Date = Date;

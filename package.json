@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "n/a",
   "scripts": {
-    "test": "jest"
+    "test": "jest --no-cache"
   },
   "repository": {
     "type": "git",

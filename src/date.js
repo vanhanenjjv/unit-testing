@@ -1,3 +1,7 @@
+function range(start, end) {
+  return Array.from({ length: end - start }, (_, i) => i + start);
+}
+
 module.exports = class Date {
   #day;
   #month;
@@ -33,11 +37,26 @@ module.exports = class Date {
   }
 
   /**
+   * 
+   * @param {Date} date 
+   * @returns {number}
+   */
+  static #totalDays(date) {
+    return date.day
+      + range(1, date.month)
+          .map(month => this.#daysInMonth(month))
+          .reduce((total, days) => total + days, 0)
+      + range(1, date.year)
+          .map(year => this.#isLeapYear(year) ? 366 : 365)
+          .reduce((total, days) => total + days, 0);
+  }
+
+  /**
    * @param {number} month
    * @param {boolean} isLeapYear
    * @returns {number}
    */
-  #daysInMonth(month, isLeapYear) {
+  static #daysInMonth(month, isLeapYear) {
     switch (month) {
       case 1:
         return 31;
@@ -72,7 +91,7 @@ module.exports = class Date {
    * @returns {void}
    */
   nextDay() {
-    const lastDayOfTheMonth = this.#daysInMonth(this.month, this.#isLeapYear());
+    const lastDayOfTheMonth = Date.#daysInMonth(this.month, this.#isLeapYear());
 
     if (this.day < lastDayOfTheMonth) {
       this.#day += 1;
@@ -88,6 +107,18 @@ module.exports = class Date {
 
     this.#month = 1;
     this.#year += 1;
+  }
+
+  /**
+   * 
+   * @param {Date} a 
+   * @param {Date} b
+   * @returns {number} 
+   */
+  daysBetween(other) {
+    const thisDays = Date.#totalDays(this);
+    const otherDays = Date.#totalDays(other);
+    return Math.abs(thisDays - otherDays);
   }
 
   /**

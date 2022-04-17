@@ -17,6 +17,14 @@ describe('Date', () => {
     })
   })
 
+  describe('daysBetween(Date)', () => {
+    it('should return 3', () => {
+      const a = new Date(4, 1, 1);
+      const b = new Date(7, 1, 1);
+      expect(a.daysBetween(b)).toEqual(3);
+    })
+  })
+
   describe('nextDay()', () => {
     it('should increment day by one', () => {
       const date = new Date(1, 2, 2001);

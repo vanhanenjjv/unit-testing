@@ -27,20 +27,6 @@ describe("Date", () => {
       });
     });
 
-    describe("daysBetween(Date)", () => {
-      it("should return 3 for Date(4, 1, 1) and Date(7, 1, 1)", () => {
-        const a = new Date(4, 1, 1);
-        const b = new Date(7, 1, 1);
-        expect(a.daysBetween(b)).toEqual(3);
-      });
-
-      it("should return 4 for Date(1, 1, 1) and Date(5, 1, 1)", () => {
-        const a = new Date(1, 1, 1);
-        const b = new Date(5, 1, 1);
-        expect(a.daysBetween(b)).toEqual(4);
-      });
-    });
-
     describe("daysInMonth(number, boolean)", () => {
       it("should return 29 for (2, true)", () => {
         expect(f.daysInMonth(2, true)).toEqual(29);
@@ -110,6 +96,20 @@ describe("Date", () => {
         date.nextDay();
         expect(date.day).toEqual(1);
         expect(date.month).toEqual(3);
+      });
+    });
+
+    describe("daysBetween(Date)", () => {
+      it("should return 3 for Date(4, 1, 1) and Date(7, 1, 1)", () => {
+        const a = new Date(4, 1, 1);
+        const b = new Date(7, 1, 1);
+        expect(a.daysBetween(b)).toEqual(3);
+      });
+
+      it("should return 4 for Date(1, 1, 1) and Date(5, 1, 1)", () => {
+        const a = new Date(1, 1, 1);
+        const b = new Date(5, 1, 1);
+        expect(a.daysBetween(b)).toEqual(4);
       });
     });
 

@@ -1,5 +1,21 @@
+/**
+ * @param {number} start 
+ * @param {number} end 
+ * @returns {Array}
+ */
 function range(start, end) {
   return Array.from({ length: end - start }, (_, i) => i + start);
+}
+
+/**
+ * @param {Date} date 
+ * @returns {boolean}
+ */
+function isLeapYear(date) {
+  if (date.year % 400 === 0) return true;
+  if (date.year % 100 === 0) return false;
+  if (date.year % 4 === 0) return true;
+  return false;
 }
 
 module.exports = class Date {
@@ -30,10 +46,7 @@ module.exports = class Date {
    * @returns {boolean}
    */
   #isLeapYear() {
-    if (this.year % 400 === 0) return true;
-    if (this.year % 100 === 0) return false;
-    if (this.year % 4 === 0) return true;
-    return false;
+    return isLeapYear(this);
   }
 
   /**
@@ -44,7 +57,7 @@ module.exports = class Date {
   static #totalDays(date) {
     return date.day
       + range(1, date.month)
-          .map(month => this.#daysInMonth(month))
+          .map(month => this.#daysInMonth(month, isLeapYear(date)))
           .reduce((total, days) => total + days, 0)
       + range(1, date.year)
           .map(year => this.#isLeapYear(year) ? 366 : 365)

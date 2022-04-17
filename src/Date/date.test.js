@@ -81,35 +81,35 @@ describe("Date", () => {
       it("should increment day by one for Date(1, 2, 2001)", () => {
         const date = new Date(1, 2, 2001);
         date.nextDay();
-        expect(date.day).toBe(2);
+        expect(date.day).toEqual(2);
       });
 
       it("should set day to one and increment month by one for Date(31, 9, 2001)", () => {
         const date = new Date(31, 9, 2001);
         date.nextDay();
-        expect(date.day).toBe(1);
-        expect(date.month).toBe(10);
+        expect(date.day).toEqual(1);
+        expect(date.month).toEqual(10);
       });
 
       it("should set day and month to one and increment year by one for Date(31, 12, 2001)", () => {
         const date = new Date(31, 12, 2001);
         date.nextDay();
-        expect(date.day).toBe(1);
-        expect(date.month).toBe(1);
-        expect(date.year).toBe(2002);
+        expect(date.day).toEqual(1);
+        expect(date.month).toEqual(1);
+        expect(date.year).toEqual(2002);
       });
 
       it("should use leap day for Date(28, 2, 2020)", () => {
         const date = new Date(28, 2, 2020);
         date.nextDay();
-        expect(date.day).toBe(29);
+        expect(date.day).toEqual(29);
       });
 
       it("should not use leap day for Date(28, 2, 2019)", () => {
         const date = new Date(28, 2, 2019);
         date.nextDay();
-        expect(date.day).toBe(1);
-        expect(date.month).toBe(3);
+        expect(date.day).toEqual(1);
+        expect(date.month).toEqual(3);
       });
     });
 

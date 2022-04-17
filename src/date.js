@@ -65,7 +65,24 @@ module.exports = class Date {
   /**
    * @returns {void}
    */
-  nextDay() {}
+  nextDay() {
+    const lastDayOfTheMonth = this.#daysInMonth(this.month, this.#isLeapYear());
+
+    if (this.day < lastDayOfTheMonth) {
+      this.day += 1;
+      return
+    }
+
+    this.day = 1;
+
+    if (this.month < 12) {
+      this.month += 1;
+      return
+    }
+
+    this.month = 1;
+    this.year += 1;
+  }
 
   /**
    * @returns {number}

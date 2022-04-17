@@ -114,14 +114,14 @@ describe("Date", () => {
     });
 
     describe("print()", () => {
-      it('should output "1.2.2001"', () => {
+      it('should output "1.2.2001" for Date(1, 2, 2001)', () => {
         const consoleLogMock = jest.spyOn(console, "log").mockImplementation();
         const date = new Date(1, 2, 2001);
         date.print();
         expect(consoleLogMock).toBeCalledWith("1.2.2001");
       });
 
-      it('should output "5.12.2006"', () => {
+      it('should output "5.12.2006" for Date(5, 12, 2006)', () => {
         const consoleLogMock = jest.spyOn(console, "log").mockImplementation();
         const date = new Date(5, 12, 2006);
         date.print();

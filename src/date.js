@@ -12,23 +12,51 @@ module.exports = class Date {
     }
   }
 
-  print() { 
+  /**
+   * @returns {void}
+   */
+  print() {
+
   }
 
+  /**
+   * @returns {boolean}
+   */
+  #isLeapYear() {
+  }
+
+  /**
+   * @returns {void}
+   */
   nextDay() {
 
   }
 
+  /**
+   * @returns {number}
+   */
+  get daysSinceNewYear() {
+    
+  }
+
+  /**
+   * @returns {number}
+   */
   get day() {
+    return this.day
   }
 
+  /**
+   * @returns {number}
+   */
   get month() {
-
+    return this.month
   }
 
+  /**
+   * @returns {number}
+   */
   get year() {
-
+    return this.year
   }
-
-
 }
